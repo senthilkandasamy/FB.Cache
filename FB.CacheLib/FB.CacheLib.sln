@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FB.CacheLib", "FB.CacheLib.csproj", "{D5764000-B407-4670-AF23-683A70E63432}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FB.CacheLib.Tests", "..\FB.CacheLib.Tests\FB.CacheLib.Tests.csproj", "{090B9DE0-E9DA-4517-9348-8F49F5DA87B8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5764000-B407-4670-AF23-683A70E63432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5764000-B407-4670-AF23-683A70E63432}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5764000-B407-4670-AF23-683A70E63432}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5764000-B407-4670-AF23-683A70E63432}.Release|Any CPU.Build.0 = Release|Any CPU
+		{090B9DE0-E9DA-4517-9348-8F49F5DA87B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{090B9DE0-E9DA-4517-9348-8F49F5DA87B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{090B9DE0-E9DA-4517-9348-8F49F5DA87B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{090B9DE0-E9DA-4517-9348-8F49F5DA87B8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {498AD32E-FD2B-4697-AACE-33A6D035B317}
+	EndGlobalSection
+EndGlobal
