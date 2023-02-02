@@ -1,0 +1,14 @@
+us.stackdump
+*.dll
+#For now, exclude these dlls from being ignored since they are being used by the Jenkins deployer
+!/update/ssis_packages/*.dll
+*.suo
+*.csproj.user
+**/.vs/
+**/packages/
+**/obj/
+**/bin/
+for_deployment/
+tools/**/logfile_limaticketverifier.txt
+**/.vs/
+**/*.nupkg
