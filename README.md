@@ -3,7 +3,7 @@ In memory cache implementation that follows approach of "last recently used" evi
 
 ## Key Components
 class FBGenericCache that implements IGenericCache, makes use of ConcurrentDictionary to achieve Thread safety and 
-LinkedList to evict the least recently 
+LinkedList to evict the least recently used cache item
 
 ## Projects
 * FB.CacheLib
