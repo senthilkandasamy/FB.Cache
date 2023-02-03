@@ -10,6 +10,7 @@ FB.CacheLib
 FB.CacheLib.Tests
 
 ## Scope for improvements
-| -------------------------- |
-To Implement all the methods in the IGenericCache methods (ran out of time)
-To support async methods to fetch or add items to cache
+
+* Bullet list 
+	* To Implement all the methods in the IGenericCache methods (ran out of time)
+	* To support async methods to fetch or add items to cache
