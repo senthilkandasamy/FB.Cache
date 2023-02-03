@@ -10,7 +10,7 @@ LinkedList to evict the least recently
 * FB.CacheLib.Tests
 
 ## Class Diagram
-<img src="./ClassDiagram.jpg">
+<img src="./ClassDiagramUpdated.jpg">
 
 
 ## Scope for improvements
