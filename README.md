@@ -1,5 +1,5 @@
 # FB.Cache Documentatiion
-In memory cache implementation that follows approach of Las recently used eviction mechanism
+In memory cache implementation that follows approach of "last recently used" eviction mechanism
 
 ## Key Components
 class FBGenericCache that implements IGenericCache, makes use of ConcurrentDictionary to achieve Thread safety and 
