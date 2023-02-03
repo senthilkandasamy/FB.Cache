@@ -50,13 +50,12 @@ namespace FB.CacheLib
         private void MoveItemToEnd(LinkedListNode<FBCacheItem> node)
         {
             // If the node has already been removed from the list, ignore.
-            // E.g. thread A reads x from the dictionary. Thread B adds a new item, removes x from 
-            // the List & Dictionary. Now thread A will try to move x to the end of the list.
             if (node.List == null)
             {
                 return;
             }
 
+            //Lock the linkedlist prior to moving item in LinkedList
             lock (this.linkedList)
             {
                 if (node.List == null)
