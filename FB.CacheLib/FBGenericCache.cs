@@ -106,7 +106,7 @@ namespace FB.CacheLib
                     bool itemRemovedFromDictionary = this.fbDictionary.TryRemove(firstItem.Value.Key, out var removed);
 
                     if (itemRemovedFromDictionary && itemRemovedFromLinkedList)
-                        this.CacheEvictedEvent.Invoke(this, removed.Value.Value.ToString());
+                        this.CacheEvictedEvent.Invoke(this, removed.Value.Key.ToString());
 
                     return itemRemovedFromDictionary && itemRemovedFromLinkedList;
                 }

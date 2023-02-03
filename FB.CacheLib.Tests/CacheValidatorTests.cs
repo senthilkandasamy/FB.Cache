@@ -1,5 +1,8 @@
 using Moq;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace FB.CacheLib.Tests
@@ -15,7 +18,7 @@ namespace FB.CacheLib.Tests
             bool result = stringCache.AddOrUpdate(1, valueToTest);
 
             string cacheValue = null;
-            stringCache.TryGet(1,out cacheValue);
+            stringCache.TryGet(1, out cacheValue);
 
             Assert.True(cacheValue == valueToTest);
         }
@@ -24,7 +27,7 @@ namespace FB.CacheLib.Tests
         [Fact]
         public void When_StringCacheCreation_Succeed_Then_CheckCacheSize()
         {
-            FBGenericCache<int,string> stringCache = new FBGenericCache<int,string>(2,2);
+            FBGenericCache<int, string> stringCache = new FBGenericCache<int, string>(2, 2);
             bool result = stringCache.AddOrUpdate(1, "one");
             result = result && stringCache.AddOrUpdate(2, "two");
 
@@ -59,14 +62,14 @@ namespace FB.CacheLib.Tests
 
 
         [Fact]
-        public void When_CacheCountExceeded_RemoveLeastRecentlyUsedItem()
+        public void When_CacheCountExceeded_RemoveLeastRecentlyUsedItem_And_GetNotified()
         {
             int valueToTest = 1;
 
             FBGenericCache<int, int> intCache = new FBGenericCache<int, int>(2, 2);
             intCache.CacheEvictedEvent += (s, e) =>
             {
-                Assert.True(e.ToString() == "1");
+                Assert.True(e.ToString() == "100");
             };
 
             intCache.AddOrUpdate(100, valueToTest);
@@ -82,5 +85,23 @@ namespace FB.CacheLib.Tests
         }
 
 
+        [Fact]
+        public void When_AccessCache_InParalell_EnsureConsistency()
+        {
+            FBGenericCache<int, int> intCache = new FBGenericCache<int, int>(2, 2);
+
+            var parallelRequests = new int[10];
+
+            Parallel.ForEach(parallelRequests, item =>
+            {
+                int valueToTest;
+                intCache.AddOrUpdate(100, 1);
+                intCache.AddOrUpdate(101, 2);
+                intCache.AddOrUpdate(101, 3);
+                intCache.TryGet(101, out valueToTest);
+                Assert.True(valueToTest == 3);
+            });
+        }
     }
+
 }
