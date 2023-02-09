@@ -25,7 +25,23 @@ namespace FB.CacheLib
 
         public bool Remove(TKey key)
         {
-            throw new NotImplementedException();
+            if(this.fbDictionary.TryRemove(key, out var removedItem))
+            {
+                if(removedItem.List != null)
+                {
+                    lock(this.linkedList)
+                    {
+                        if(removedItem.List != null)
+                        {
+                            linkedList.Remove(removedItem);
+                        }
+                    }
+                }
+
+                return true;
+
+            }
+            return false;
         }
 
         
@@ -105,7 +121,7 @@ namespace FB.CacheLib
                     bool itemRemovedFromDictionary = this.fbDictionary.TryRemove(firstItem.Value.Key, out var removed);
 
                     if (itemRemovedFromDictionary && itemRemovedFromLinkedList)
-                        this.CacheEvictedEvent.Invoke(this, removed.Value.Key.ToString());
+                        NotifyListeners(removed.Value.Key.ToString());
 
                     return itemRemovedFromDictionary && itemRemovedFromLinkedList;
                 }
@@ -128,6 +144,11 @@ namespace FB.CacheLib
         public bool GetOrAdd(TKey key, TValue value)
         {
             throw new NotImplementedException();
+        }
+
+        private void NotifyListeners(string removedKey)
+        {
+            this.CacheEvictedEvent.Invoke(this, removedKey);
         }
 
         private class FBCacheItem

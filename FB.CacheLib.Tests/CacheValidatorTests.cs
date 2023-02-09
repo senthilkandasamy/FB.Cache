@@ -90,7 +90,7 @@ namespace FB.CacheLib.Tests
         {
             FBGenericCache<int, int> intCache = new FBGenericCache<int, int>(2, 2);
 
-            var parallelRequests = new int[10];
+            var parallelRequests = new int[25];
 
             Parallel.ForEach(parallelRequests, item =>
             {
@@ -101,6 +101,21 @@ namespace FB.CacheLib.Tests
                 intCache.TryGet(101, out valueToTest);
                 Assert.True(valueToTest == 3);
             });
+        }
+
+        [Fact]
+        public void When_ItemRemoved_ThenCheckCacheConsistency()
+        {
+            int valueToTest = 1;
+            FBGenericCache<int, int> intCache = new FBGenericCache<int, int>(2, 2);
+            intCache.AddOrUpdate(100, valueToTest);
+            intCache.AddOrUpdate(101, 2);
+            intCache.AddOrUpdate(102, 3);
+
+            var hasItemRemoved = intCache.Remove(100);
+
+            Assert.True(hasItemRemoved);
+
         }
     }
 
